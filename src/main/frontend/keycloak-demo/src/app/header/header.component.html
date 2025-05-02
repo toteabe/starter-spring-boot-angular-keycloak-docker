@@ -1,0 +1,23 @@
+<nav class="bg-blue-700 h-[74px]">
+  <div class="container mx-auto">
+    <div class="max-w-screen-xl px-4 py-3">
+      <div class="flex items-center">
+        <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+          @if (isLoggedIn) {
+          <li>
+            <a routerLink="home" routerLinkActive="underline" class="font-bold text-white hover:underline">Home</a>
+          </li>
+          <li>
+            <a routerLink="categorias" routerLinkActive="underline" class="font-bold text-white hover:underline">Categorías</a>
+          </li>
+          <li>         
+            <button type="button" (click)="logout()" class="btn btn-danger"
+            style="margin-left: 2px; margin-top: 2px;">Logout        
+            </button>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

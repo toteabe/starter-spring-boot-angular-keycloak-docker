@@ -1,0 +1,84 @@
+<div class="container mx-auto ">
+  <div class="flex justify-center items-center">
+    <div>
+      <h1 class="text-2xl font-bold mb-4">Registrar</h1>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="flex flex-col">
+          <div class="flex flex-row">
+            <div class="min-w-20">
+              <label for="username" >Username</label>
+            </div>
+            <div>
+              <input id="username" type="text" class="border border-gray-300 p-2 rounded-md mb-3 mx-1" name="username"
+              [(ngModel)]="form.username" required #username="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && username.errors }" />
+            </div>
+          </div>
+          <div *ngIf="username.errors && f.submitted" class="invalid-feedback">
+            El username es requerido
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex flex-row">
+            <div class="min-w-20">
+              <label for="password" class="min-w-6">Password</label>
+            </div>
+            <div>
+              <input id="password" type="password" class="border border-gray-300 p-2 rounded-md mb-3 mx-1" name="password" [(ngModel)]="form.password" required
+              minlength="6" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+            </div>
+          </div>
+          <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+            <div *ngIf="password.errors['required']">La password es requerida</div>
+            <div *ngIf="password.errors['minlength']">
+              La password debe ser de al menos 6 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex flex-row">
+            <div class="min-w-20">
+              <label for="password" class="min-w-6">Email</label>
+            </div>            
+            <div>
+              <input id="email" type="email" class="border border-gray-300 p-2 rounded-md mb-3 mx-1" name="email"
+              [(ngModel)]="form.email" required #email="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+            </div>
+          </div>
+          <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+            <div *ngIf="email.errors['required']">El Email es requerido</div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex flex-row">
+            <div class="min-w-20">
+              <label for="password" class="min-w-6">Rol</label>
+            </div>
+            <div>
+              <select id="rol" class="border border-gray-300 p-2 rounded-md mb-3 mx-1" name="rol" [(ngModel)]="form.rol"
+                required #rol="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rol.errors }">
+                <option value="user">Usuario</option>
+                <option value="admin">Administrador</option>
+              </select>
+            </div>
+          </div>
+          <div *ngIf="rol.errors && f.submitted" class="invalid-feedback">
+            <div *ngIf="rol.errors['required']">El rol es requerido</div>
+          </div>
+        </div>
+        <div>
+          <button class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">
+            Registrar
+          </button>
+        </div>
+        <div class="mt-0.5">
+          <a routerLink="/login" class="text-blue-500 hover:underline">
+            ¿Ya tienes cuenta? Inicia sesión.
+          </a>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
