@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -21,6 +22,9 @@ public class DemoController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         log.info(authentication.toString());
+        Jwt jwt = (Jwt)authentication.getPrincipal();
+        log.info("username = {}", jwt.getClaimAsString("preferred_username"));
+        log.info("userId = {}", jwt.getClaimAsString("sub"));
         return new ResponseEntity<>("{\"prueba\": \"ok\"}", HttpStatus.OK);
 
     }

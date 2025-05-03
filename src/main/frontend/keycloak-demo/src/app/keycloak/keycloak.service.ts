@@ -40,6 +40,11 @@ export class KeycloakService {
       console.log('Authenticated');
       this._userProfile = (await this.keycloak?.loadUserProfile() as UserProfile);
       this._userProfile.token = this.keycloak?.token;
+
+      console.log('User Profile:', this._userProfile);
+      console.log('Token:', this.keycloak?.token);
+      console.log('Token Parsed:', this.keycloak?.tokenParsed);
+
     }
 
     // return authenticated;
@@ -49,7 +54,11 @@ export class KeycloakService {
     this.keycloak?.login();
   }
   logout() {
+
     this.keycloak?.logout({redirectUri: 'http://localhost:4200'});
+  }
+  accountManagement() {
+    this.keycloak?.accountManagement();
   }
   // isLoggedIn() {
   //   return this.keycloak?.authenticated;

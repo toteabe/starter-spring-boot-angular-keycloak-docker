@@ -26,6 +26,10 @@ export class DemoComponent {
     this.kcService.logout();
   }
 
+  accountManagement() {
+    this.kcService.accountManagement();
+  }
+  
   getData() {
     this.demoService.getData().subscribe(
       (response: any) => {
